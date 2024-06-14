@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Blockchain Explorer</h1>
+            <form id="searchForm">
+                <input type="text" id="searchInput" placeholder="Search by transaction hash or address">
+                <button type="submit">Search</button>
+            </form>
+        </header>
+        <main>
+            <section id="results">
+                <h2>Results</h2>
+                <div id="transactionDetails"></div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Blockchain Explorer</p>
+        </footer>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
