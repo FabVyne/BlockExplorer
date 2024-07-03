@@ -1,74 +1,65 @@
-import React, { useState } from 'react';
-import './Dashboard.css';
+document.getElementById('search-button').addEventListener('click', function() {
+    const query = document.getElementById('search-input').value;
+    if (!query) {
+        alert('Please enter a block number, transaction ID, or address.');
+        return;
+    }
+    
+    // Mock function to demonstrate switching sections and displaying data
+    // Replace with actual API call and logic
+    if (isAddress(query)) {
+        displayBalance(query);
+        displayTransactions(query);
+    } else {
+        displayTransactionDetails(query);
+    }
+});
 
-const Dashboard = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('balance');
-  const [balance, setBalance] = useState(null);
-  const [transactions, setTransactions] = useState([]);
+document.getElementById('balance-link').addEventListener('click', function() {
+    showSection('balance-section');
+});
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // TODO: Implement API call to fetch data based on searchQuery
-    console.log('Searching for:', searchQuery);
-  };
+document.getElementById('transactions-link').addEventListener('click', function() {
+    showSection('transactions-section');
+});
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
+function showSection(sectionId) {
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById(sectionId).style.display = 'block';
+}
 
-  return (
-    <div className="dashboard">
-      <nav className="navbar">
-        <div className="nav-item" onClick={() => handleTabChange('balance')}>Balance</div>
-        <div className="nav-item" onClick={() => handleTabChange('transactions')}>Transaction History</div>
-      </nav>
+function isAddress(query) {
+    // Mock function to check if the query is an address
+    // Replace with actual validation logic
+    return query.length === 42; // Typical length of an Ethereum address
+}
 
-      <form onSubmit={handleSearch} className="search-form">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Enter block number, transaction ID, or address"
-          className="search-input"
-        />
-        <button type="submit" className="search-button">Search</button>
-      </form>
+function displayBalance(address) {
+    // Mock function to display balance
+    // Replace with actual API call
+    document.getElementById('balance').innerText = `Balance for ${address}: 10 ETH`;
+}
 
-      <div className="content">
-        {activeTab === 'balance' && (
-          <div className="balance-section">
-            <h2>Balance</h2>
-            {balance !== null ? (
-              <p>Current balance: {balance}</p>
-            ) : (
-              <p>Enter an address to view balance</p>
-            )}
-          </div>
-        )}
+function displayTransactions(address) {
+    // Mock function to display transactions
+    // Replace with actual API call
+    const transactions = [
+        { date: '2023-01-01', amount: '1 ETH', status: 'Confirmed' },
+        { date: '2023-01-02', amount: '2 ETH', status: 'Pending' }
+    ];
+    const transactionsList = document.getElementById('transactions-list');
+    transactionsList.innerHTML = '';
+    transactions.forEach(tx => {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${tx.date} - ${tx.amount} - ${tx.status}`;
+        transactionsList.appendChild(listItem);
+    });
+}
 
-        {activeTab === 'transactions' && (
-          <div className="transactions-section">
-            <h2>Transaction History</h2>
-            {transactions.length > 0 ? (
-              <ul className="transaction-list">
-                {transactions.map((tx, index) => (
-                  <li key={index} className="transaction-item">
-                    <span>Date: {tx.date}</span>
-                    <span>Time: {tx.time}</span>
-                    <span>Amount: {tx.amount}</span>
-                    <span>Status: {tx.status}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No transactions to display</p>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default Dashboard;
+function displayTransactionDetails(txId) {
+    // Mock function to display transaction details
+    // Replace with actual API call
+    alert(`Transaction details for ${txId}`);
+}
