@@ -3,28 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Explorer</title>
+    <title>Blockchain Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand">Blockchain Dashboard</a>
+            <ul class="navbar-menu">
+                <li><a href="#" id="balance-link">Balance</a></li>
+                <li><a href="#" id="transactions-link">Transaction History</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h1>Block Explorer</h1>
-            <form id="searchForm">
-                <input type="text" id="searchInput" placeholder="Search by transaction hash or address">
-                <button type="submit">Search</button>
-            </form>
-        </header>
-        <main>
-            <section id="results">
-                <h2>Results</h2>
-                <div id="transactionDetails"></div>
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2023 Block Explorer</p>
-        </footer>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Enter block number, transaction ID, or address">
+            <button id="search-button">Search</button>
+        </div>
+        
+        <div id="content">
+            <div id="balance-section" class="content-section">
+                <h2>Balance</h2>
+                <p id="balance">Enter an address to see the balance.</p>
+            </div>
+            <div id="transactions-section" class="content-section">
+                <h2>Transaction History</h2>
+                <ul id="transactions-list">
+                    <li>Enter an address or transaction ID to see the transaction history.</li>
+                </ul>
+            </div>
+        </div>
     </div>
+
     <script src="scripts.js"></script>
 </body>
 </html>
